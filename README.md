@@ -1,3 +1,20 @@
+# fmmlib3d
+
+Fork of the fmmlib3d v1.2 fast multipole method library from NYU
+
+https://cims.nyu.edu/cmcl/fmm3dlib/fmm3dlib.html
+
+## Installation on Mac OS X using gfortran and MATLAB
+
+After following instructions on [Alec's Web
+Log](http://www.alecjacobson.com/weblog/?p=4749) to install gfortran.
+
+Issue:
+
+    cd matlab/
+    compile
+
+## Original README
 
 This is the first public release of the particle FMM library in R^3.
 Date: April 13, 2012
@@ -105,4 +122,5 @@ Matlab
 % Internal utility functions.
 %   fmm3dprini   - initialize simple printing routines.
 %
+
 

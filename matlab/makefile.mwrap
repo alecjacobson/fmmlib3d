@@ -10,7 +10,7 @@ MEX_GATEWAY = $(PROJECT)
 
 
 ###TARGET=octave-linux
-TARGET=octave-linux-openmp
+###TARGET=octave-linux-openmp
 
 ###TARGET=octave-linux-intel
 ###TARGET=octave-linux-intel-openmp
@@ -20,7 +20,7 @@ TARGET=octave-linux-openmp
 
 ###TARGET=matlab-maci
 ###TARGET=matlab-maci-openmp
-###TARGET=matlab-maci64
+TARGET=matlab-maci64
 ###TARGET=matlab-maci64-openmp
 
 ###TARGET=matlab-windows-w32
