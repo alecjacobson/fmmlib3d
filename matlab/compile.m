@@ -1,5 +1,6 @@
 % Attempt to compile and link everything
 %
+flags = {'-v','FFLAGS=$FFLAGS -O5 -funroll-loops -ftree-vectorize -fopenmp'};
 fortran_src_files = {'../src/lfmm3dtria.f'
 '../src/hfmm3dtria.f'
 '../src/hfmm3dpart.f'
@@ -32,13 +33,15 @@ fortran_src_files = {'../src/lfmm3dtria.f'
 '../src/legeexps.f'};
 for i = 1:numel(fortran_src_files)
   fortran_src_file = fortran_src_files{i};
-  mex(fortran_src_file,'-compatibleArrayDims','-c');
+  mex(fortran_src_file,'-largeArrayDims','-c',flags{:});
 end
 fortran_object_files = cellfun( ...
   @(s) strrep(strrep(s,'../src/',''),'.f','.o'), ...
   fortran_src_files,'UniformOutput',false);
 
 %/usr/local/Cellar/gcc/7.2.0/lib/gcc/7/gcc/x86_64-apple-darwin16.7.0/7.2.0/../../../libgfortran.dylib
-[~,libgfortran] = system('gfortran -print-file-name=libgfortran.dylib');
+[~,libgfortran] = system('/usr/local/bin/gfortran -print-file-name=libgfortran.dylib');
 libgfortran = libgfortran(1:end-1);
-mex('fmm3d_r2012a.c',fortran_object_files{:},libgfortran);
+[~,libgomp] = system('/usr/local/bin/gfortran -print-file-name=libgomp.dylib');
+libgomp = libgomp(1:end-1);
+mex('fmm3d_r2012a.c',fortran_object_files{:},libgfortran,flags{:},libgomp);
